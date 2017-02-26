@@ -66,8 +66,10 @@ class GdAbsensiController extends Controller
 		$modelKelas = GdKelas::model()->findByPk($kelas);
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-		
-		if(isset($_POST))
+		// echo '<pre>';
+		// var_export($_POST);
+		// exit();
+		if(isset($_POST['GdAbsensi']))
 		{
 			if($_POST['PK']){
 				foreach($_POST['PK'] as $xData){
@@ -101,7 +103,6 @@ class GdAbsensiController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
-		$modelKelas = GdKelas::model()->findByPk($id);
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -116,7 +117,6 @@ class GdAbsensiController extends Controller
 
 		$this->render('update',array(
 			'model'=>$model,
-			'modelKelas'=> $modelKelas,
 		));
 	}
 

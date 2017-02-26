@@ -33,6 +33,8 @@
 	<table>
 	<?php
 		$number =1;
+
+		echo '<input type="hidden" name="GdAbsensi" value="Yes">';
 		echo '<tr><th style="width:1%";>No</th><th style="width:70%;">Nama</th><th style="width:10%;">Hadir</th><th style="width:10%;">Sakit</th><th style="width:10%;">Izin</th><th style="width:10%;">Alpa</th></tr>';
 		
 		foreach($modelSiswa as $data){
