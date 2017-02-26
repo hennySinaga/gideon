@@ -1,20 +1,21 @@
 <?php
 
 /**
- * This is the model class for table "gd_kelas".
+ * This is the model class for table "gd_kelas_murid".
  *
- * The followings are the available columns in table 'gd_kelas':
+ * The followings are the available columns in table 'gd_kelas_murid':
+ * @property integer $id
  * @property integer $id_kelas
- * @property string $kelas
+ * @property integer $id_murid
  */
-class GdKelas extends CActiveRecord
+class GdKelasMurid extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'gd_kelas';
+		return 'gd_kelas_murid';
 	}
 
 	/**
@@ -25,11 +26,10 @@ class GdKelas extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('kelas', 'required'),
-			array('kelas', 'length', 'max'=>255),
+			array('id_kelas, id_murid', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_kelas, kelas', 'safe', 'on'=>'search'),
+			array('id, id_kelas, id_murid', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -50,8 +50,9 @@ class GdKelas extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
+			'id' => 'ID',
 			'id_kelas' => 'Id Kelas',
-			'kelas' => 'Kelas',
+			'id_murid' => 'Id Murid',
 		);
 	}
 
@@ -73,8 +74,9 @@ class GdKelas extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
+		$criteria->compare('id',$this->id);
 		$criteria->compare('id_kelas',$this->id_kelas);
-		$criteria->compare('kelas',$this->kelas,true);
+		$criteria->compare('id_murid',$this->id_murid);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -85,7 +87,7 @@ class GdKelas extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return GdKelas the static model class
+	 * @return GdKelasMurid the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

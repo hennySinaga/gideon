@@ -67,15 +67,29 @@ class GdKelasController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['GdKelas']))
+		if(isset($_POST['GdKelas']) && isset($_POST['pilihanSiswa']))
 		{
 			$model->attributes=$_POST['GdKelas'];
-			if($model->save())
+			if($model->save()){
+				$modelGdKelasMurid = new GdKelasMurid;
+				$kelasYangDipilih =  $_POST['pilihanSiswa'];
+				$PK = $model->id_kelas;
+				foreach($kelasYangDipilih as $data){
+					$modelGdKelasMurid = new GdKelasMurid;
+					$modelGdKelasMurid->id_kelas = $PK;
+					$modelGdKelasMurid->id_murid = $data;
+					$modelGdKelasMurid->save();
+				}
 				$this->redirect(array('view','id'=>$model->id_kelas));
+			}
+		}else{
+			$modelSiswa = new GdMurid;
+
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
+			'modelSiswa'=>$modelSiswa,
 		));
 	}
 
@@ -91,15 +105,30 @@ class GdKelasController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['GdKelas']))
+		if(isset($_POST['GdKelas']) && isset($_POST['pilihanSiswa']))
 		{
 			$model->attributes=$_POST['GdKelas'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_kelas));
+			if($model->save()){
+				$gdKelasMurid = Yii::app()->db->createCommand();
+				$gdKelasMurid->delete('gd_kelas_murid', 'id_kelas=:id_kelas', array(':id_kelas'=>$id));
+
+				$kelasYangDipilih =  $_POST['pilihanSiswa'];
+				$PK = $model->id_kelas;
+				foreach($kelasYangDipilih as $data){
+					$modelGdKelasMurid = new GdKelasMurid;
+					$modelGdKelasMurid->id_kelas = $PK;
+					$modelGdKelasMurid->id_murid = $data;
+					$modelGdKelasMurid->save();
+				}
+
+				$this->redirect(array('view',
+					'id'=>$model->id_kelas));
+			}
 		}
 
 		$this->render('update',array(
 			'model'=>$model,
+			'id' => $id
 		));
 	}
 
