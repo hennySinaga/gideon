@@ -27,8 +27,7 @@ class GdAbsensi extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_absen, NIS', 'required'),
-			array('id_absen', 'numerical', 'integerOnly'=>true),
+			array('NIS', 'required'),
 			array('NIS', 'length', 'max'=>255),
 			array('status_kehadiran', 'length', 'max'=>1),
 			array('tanggal', 'safe'),

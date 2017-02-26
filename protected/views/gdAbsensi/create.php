@@ -13,6 +13,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Create GdAbsensi</h1>
+<h1>Absensi Kelas <?php echo $modelKelas->kelas;?></h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->renderPartial('_form', array('model'=>$model,'modelKelas' => $modelKelas)); ?>

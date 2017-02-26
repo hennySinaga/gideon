@@ -16,6 +16,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Update GdAbsensi <?php echo $model->id_absen; ?></h1>
+<h1>Update Absensi <?php echo $modelKelas->kelas; ?></h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->renderPartial('_formUpdate', array('model'=>$model,'modelKelas'=> $modelKelas,)); ?>

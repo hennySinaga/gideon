@@ -12,6 +12,11 @@ class GdKelas extends CActiveRecord
 	/**
 	 * @return string the associated database table name
 	 */
+	public $id_absen;
+	public $tanggal;
+	public $NIS;
+	public $status_kehadiran;
+	
 	public function tableName()
 	{
 		return 'gd_kelas';
