@@ -3,7 +3,6 @@
 /* @var $model GdKelas */
 /* @var $form CActiveForm */
 ?>
-
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -32,14 +31,25 @@
 	<table>
 	<?php 
 		$modelSiswa = Yii::app()->db->createCommand("select * from gd_murid ORDER BY nama ASC")->queryAll();
+		$modelKelasMurids= Yii::app()->db->createCommand("select * from gd_kelas_murid where id_kelas = '".$id."' ")->queryAll();
+		$temp = array();
+		foreach($modelKelasMurids as $modelKelasMurid){
+        	$temp[$modelKelasMurid['id_murid']] = $modelKelasMurid['id_murid'];
+    	}
 		$number =1;
 		echo '<tr><th style="width:1%";>No</th><th style="width:80%;">Nama</th><th style="width:1%">Pilih</th></tr>';
 		
 		foreach($modelSiswa as $data){
 			echo '<tr>';	
 			echo '<td align="center">'.$number.'</td>';
-			echo '<td align="left">'.$data['nama'].'</td>';
-			echo '<td align="center">'."<input type=\"checkbox\" name=\"pilihanSiswa[]\" value=".$data['id_user'].">".'</td>';
+			echo '<td align="left">'.$data['nama'].'</td>';	
+			if(array_key_exists($data['id_user'],$temp)){
+				echo '<td align="center">'."<input type=\"checkbox\" name=\"pilihanSiswa[]\" checked value=".$data['id_user'].">".'</td>';
+			}
+			else{
+				echo '<td align="center">'."<input type=\"checkbox\" name=\"pilihanSiswa[]\" value=".$data['id_user'].">".'</td>';
+			}
+				
 			$number++;
 			echo '</tr>';
 		}

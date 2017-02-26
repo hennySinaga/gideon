@@ -16,6 +16,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Update GdKelas <?php echo $model->id_kelas; ?></h1>
+<h1>Ubah Kelas <?php echo $model->kelas; ?></h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->renderPartial('_formUpdate', array('model'=>$model,'id'=>$id)); ?>

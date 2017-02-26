@@ -5,7 +5,7 @@
  *
  * The followings are the available columns in table 'gd_kelas':
  * @property integer $id_kelas
- * @property string $kelasasiohdasiuadjioadsjp
+ * @property string $kelas
  */
 class GdKelas extends CActiveRecord
 {
@@ -25,8 +25,7 @@ class GdKelas extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_kelas, kelas', 'required'),
-			array('id_kelas', 'numerical', 'integerOnly'=>true),
+			array('kelas', 'required'),
 			array('kelas', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
