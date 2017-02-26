@@ -25,6 +25,7 @@
 	<?php echo $form->errorSummary($model); ?>
 	<?php $modelSiswa = Yii::app()->db->createCommand("select * from gd_murid a 
 			join gd_kelas_murid b on(a.id_user = b.id_murid)
+			join gd_absensi c on(a.id_user = c.NIS)
 			where b.id_kelas = $modelKelas->id_kelas")->queryAll();
 	// echo '<pre>';
 	// var_export($modelSiswa);
@@ -40,6 +41,8 @@
 			echo '<input type="hidden" name="PK[]" value="'.$data['id_user'].'">';
 			echo '<td align="center">'.$number.'</td>';
 			echo '<td align="left">'.$data['nama'].'</td>';
+			$kehadiran = Yii::app()->db->createCommand("select * from gd_murid a 
+			where b.id_kelas = $modelKelas->id_kelas")->queryAll();
 			echo '<td align="center">'."<input type=\"radio\" name=\"kehadiran_".$data['id_user']."\" value=\"H\">".'</td>';
 			echo '<td align="center">'."<input type=\"radio\" name=\"kehadiran_".$data['id_user']."\" value=\"S\">".'</td>';
 			echo '<td align="center">'."<input type=\"radio\" name=\"kehadiran_".$data['id_user']."\" value=\"I\">".'</td>';

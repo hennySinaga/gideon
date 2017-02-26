@@ -60,22 +60,37 @@ class GdAbsensiController extends Controller
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
-	public function actionCreate()
+	public function actionCreate($kelas)
 	{
 		$model=new GdAbsensi;
-
+		$modelKelas = GdKelas::model()->findByPk($kelas);
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['GdAbsensi']))
+		
+		if(isset($_POST))
 		{
-			$model->attributes=$_POST['GdAbsensi'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_absen));
+			if($_POST['PK']){
+				foreach($_POST['PK'] as $xData){
+					$model=new GdAbsensi;
+					$model->tanggal = date('Y-m-d H:i:s');
+					$model->NIS = $xData;
+					$model->status_kehadiran = $_POST['kehadiran_'.$xData];
+					$model->save();
+				}
+			}else{
+				$this->render('create',array(
+					'model'=>$model,
+					'modelKelas'=> $modelKelas,
+				));
+			}
+			$this->redirect(array('view','id'=>$model->id_absen));
+			// $model->attributes=$_POST['GdAbsensi'];
+			// if($model->save())	
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
+			'modelKelas'=> $modelKelas,
 		));
 	}
 
@@ -86,6 +101,7 @@ class GdAbsensiController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+		$modelKelas = GdKelas::model()->findByPk($id);
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -100,6 +116,7 @@ class GdAbsensiController extends Controller
 
 		$this->render('update',array(
 			'model'=>$model,
+			'modelKelas'=> $modelKelas,
 		));
 	}
 
@@ -122,7 +139,7 @@ class GdAbsensiController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('GdAbsensi');
+		$dataProvider=new CActiveDataProvider('GdKelas');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
