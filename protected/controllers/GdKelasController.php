@@ -63,8 +63,6 @@ class GdKelasController extends Controller
 	public function actionCreate()
 	{
 		$model=new GdKelas;
-		$GdMurid = GdMurid::model()->findAll();
-		$test = "bodat";
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -78,8 +76,6 @@ class GdKelasController extends Controller
 
 		$this->render('create',array(
 			'model'=>$model,
-			'GdMurid'=>$GdMurid,
-			'bodat'=>$bodat
 		));
 	}
 
