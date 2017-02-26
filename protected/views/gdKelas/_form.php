@@ -15,29 +15,24 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<!--p class="note">Fields with <span class="required">*</span> are required.</p-->
+	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<!--div class="row">
+	<div class="row">
 		<?php echo $form->labelEx($model,'id_kelas'); ?>
 		<?php echo $form->textField($model,'id_kelas'); ?>
 		<?php echo $form->error($model,'id_kelas'); ?>
-	</div-->
+	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'kelas'); ?>
 		<?php echo $form->textField($model,'kelas',array('size'=>60,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'kelas'); ?>
 	</div>
-	
-	<div class="row">
-		<?php //echo $form->checkBox($Gdmurid, 'nama')?>
-		<?php echo $bodat; ?>
-	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Buat' : 'Ubah'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

@@ -5,7 +5,7 @@
  *
  * The followings are the available columns in table 'gd_kelas':
  * @property integer $id_kelas
- * @property string $kelas
+ * @property string $kelasasiohdasiuadjioadsjp
  */
 class GdKelas extends CActiveRecord
 {
